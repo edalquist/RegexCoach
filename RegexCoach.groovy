@@ -134,6 +134,10 @@ swing.regexOptCaseInsensitive.addActionListener(highlighter)
 swing.regexOptMultiline.addActionListener(highlighter)
 swing.regexOptDotAll.addActionListener(highlighter)
 swing.regexOptComments.addActionListener(highlighter)
+swing.regexOptCanonEq.addActionListener(highlighter)
+swing.regexOptLiteral.addActionListener(highlighter)
+swing.regexOptUnicodeCase.addActionListener(highlighter)
+swing.regexOptUnixLines.addActionListener(highlighter)
 
 //Match change listeners
 swing.matchNumber.addChangeListener(highlighter)
@@ -266,6 +270,18 @@ class RegexHighlighter extends KeyAdapter implements ActionListener, ChangeListe
                 }
                 if (swing.regexOptComments.selected) {
                     patternFlags |= Pattern.COMMENTS
+                }
+                if (swing.regexOptCanonEq.selected) {
+                    patternFlags |= Pattern.CANON_EQ
+                }
+                if (swing.regexOptLiteral.selected) {
+                    patternFlags |= Pattern.LITERAL
+                }
+                if (swing.regexOptUnicodeCase.selected) {
+                    patternFlags |= Pattern.UNICODE_CASE
+                }
+                if (swing.regexOptUnixLines.selected) {
+                    patternFlags |= Pattern.UNIX_LINES
                 }
                 
                 def pattern = Pattern.compile(regex, patternFlags);
