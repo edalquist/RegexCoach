@@ -10,5 +10,5 @@ To run:
 * Download [RegexCoach.groovy](RegexCoach/raw/master/RegexCoach.groovy)  
 * ```groovy RegexCoach.groovy``` 
 
-Screenshot:
-+![Example 1](RegexCoach/raw/master/docs/GroovyRegexCoach.png)
+Screenshot:  
+![Example 1](RegexCoach/raw/master/docs/GroovyRegexCoach.png)
