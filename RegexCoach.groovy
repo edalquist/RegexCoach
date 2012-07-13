@@ -13,21 +13,12 @@ import java.util.concurrent.atomic.*
 def swing = new SwingBuilder()
 def gui = swing.frame(title:"The Groovy Regex Coach", location:[20,40], size:[600,600], defaultCloseOperation:WindowConstants.EXIT_ON_CLOSE) {
     panel(layout:new BorderLayout()) {
-        splitPane(orientation:JSplitPane.VERTICAL_SPLIT, dividerLocation:450) {
+        splitPane(orientation:JSplitPane.VERTICAL_SPLIT, dividerLocation:410) {
             splitPane(orientation:JSplitPane.VERTICAL_SPLIT, dividerLocation:200) {
                 panel(layout:new BorderLayout()) {
                     label(constraints:BorderLayout.NORTH, text:"Regular expression:")
                     scrollPane(constraints:BorderLayout.CENTER) {textPane(id:"regexPane", text:"oo (the) bar")}
-                    panel(constraints:BorderLayout.SOUTH, layout:new BorderLayout()) {
-                        label(constraints:BorderLayout.WEST, id:"regexStatus", text:" ")
-                        panel(constraints:BorderLayout.EAST) {
-                            checkBox(id:"regexOptCaseInsensitive", text:"i", toolTipText:"Case Insensitive")    //CASE_INSENSITIVE 
-                            checkBox(id:"regexOptMultiline", text:"m", toolTipText:"Multline")  //MULTILINE 
-                            checkBox(id:"regexOptDotAll", text:"s", toolTipText:"Dot All") //DOTALL
-                            checkBox(id:"regexOptComments", text:"x", toolTipText:"Comments") //COMMENTS
-                            //TODO CANON_EQ, LITERAL, UNICODE_CASE, UNIX_LINES
-                        }
-                    }
+                    label(constraints:BorderLayout.WEST, id:"regexStatus", text:" ")
                 }
                 panel(layout:new BorderLayout()) {
                     label(constraints:BorderLayout.NORTH, text:"Target string:")
@@ -39,55 +30,89 @@ def gui = swing.frame(title:"The Groovy Regex Coach", location:[20,40], size:[60
             }
             panel(layout:new BorderLayout()) {
                 highlightGroup = buttonGroup();
-                tableLayout {
-                    tr {
-                        td(colspan:3) {
-                            label("Highlight")
+                panel(constraints:BorderLayout.NORTH) {
+                    tableLayout {
+                        tr {
+                            td {
+                                checkBox(id:"regexOptCaseInsensitive", text:"Case Insensitive")    //CASE_INSENSITIVE 
+                            }
+                            td {
+                                checkBox(id:"regexOptMultiline", text:"Multline")  //MULTILINE
+                            }
+                            td { 
+                                checkBox(id:"regexOptDotAll", text:"Dot All") //DOTALL
+                            }
+                            td {
+                                checkBox(id:"regexOptComments", text:"Comments") //COMMENTS
+                            }
                         }
-                    }
-                    tr {
-                        td {
-                            radioButton(id:"highlightSelection", text:"selection", buttonGroup:highlightGroup, enabled:false)
-                        }
-                        td {
-                            radioButton(id:"highlightNone", text:"nothing", buttonGroup:highlightGroup)
-                        }
-                        td {
-                            panel(layout:new FlowLayout()) {
-                                radioButton(id:"highlightGroup", text:"Group", buttonGroup:highlightGroup, selected:true)
-                                spinner(id:"highlightGroupNumber", model:spinnerNumberModel(value:0, minimum:0, maximum:1, stepSize:1))
-                                label(text:"/")
-                                label(id:"groupCount", text:"0")
+                        tr {
+                            td {
+                                checkBox(id:"regexOptCanonEq", text:"Canonical Eq") //CANON_EQ
+                            }
+                            td {
+                                checkBox(id:"regexOptLiteral", text:"Literal") //LITERAL
+                            }
+                            td {
+                                checkBox(id:"regexOptUnicodeCase", text:"Unicode-Aware Case") //UNICODE_CASE
+                            }
+                            td {
+                                checkBox(id:"regexOptUnixLines", text:"Unix Lines") //UNIX_LINES
                             }
                         }
                     }
-                    tr {
-                        td {
-                            label(id:"highlightSelectionLabel", text:"")
-                        }
-                        td {
-                            label(id:"highlightNothingLabel", text:"")
-                        }
-                        td {
-                            label(id:"highlightGroupLabel", text:"")
-                        }
-                    }
-                    tr {
-                        td(colspan:3) {
-                            panel(layout:new BorderLayout()) {
-                                panel(layout:new FlowLayout(), constraints:BorderLayout.WEST) {
-                                    label(text:"Match")
-                                    spinner(id:"matchNumber", model:spinnerNumberModel(value:1, minimum:1, maximum:1, stepSize:1))
+                }
+                panel(constraints:BorderLayout.SOUTH) {
+                    tableLayout {
+                        tr {
+                            td {
+                                label("Highlight:")
+                            }
+                            td {
+                                radioButton(id:"highlightSelection", text:"selection", buttonGroup:highlightGroup, enabled:false)
+                            }
+                            td {
+                                radioButton(id:"highlightNone", text:"nothing", buttonGroup:highlightGroup)
+                            }
+                            td {
+                                panel(layout:new FlowLayout()) {
+                                    radioButton(id:"highlightGroup", text:"Group", buttonGroup:highlightGroup, selected:true)
+                                    spinner(id:"highlightGroupNumber", model:spinnerNumberModel(value:0, minimum:0, maximum:1, stepSize:1))
                                     label(text:"/")
-                                    label(id:"matchCount", text:"0")
+                                    label(id:"groupCount", text:"0")
                                 }
-                                panel(layout:new FlowLayout(), constraints:BorderLayout.CENTER) {
-                                    label(text:"String Start")
-                                    spinner(id:"startOfString", model:spinnerNumberModel(value:0, minimum:0, maximum:0, stepSize:1))
-                                }
-                                panel(layout:new FlowLayout(), constraints:BorderLayout.EAST) {
-                                    label(text:"String End")
-                                    spinner(id:"endOfString", model:spinnerNumberModel(value:0, minimum:0, maximum:0, stepSize:1))
+                            }
+                        }
+                        tr {
+                            td {
+                            }
+                            td {
+                                label(id:"highlightSelectionLabel", text:"")
+                            }
+                            td {
+                                label(id:"highlightNothingLabel", text:"")
+                            }
+                            td {
+                                label(id:"highlightGroupLabel", text:"")
+                            }
+                        }
+                        tr {
+                            td(colspan:4) {
+                                panel(layout:new BorderLayout()) {
+                                    panel(layout:new FlowLayout(), constraints:BorderLayout.WEST) {
+                                        label(text:"Match")
+                                        spinner(id:"matchNumber", model:spinnerNumberModel(value:1, minimum:1, maximum:1, stepSize:1))
+                                        label(text:"/")
+                                        label(id:"matchCount", text:"0")
+                                    }
+                                    panel(layout:new FlowLayout(), constraints:BorderLayout.CENTER) {
+                                        label(text:"String Start")
+                                        spinner(id:"startOfString", model:spinnerNumberModel(value:0, minimum:0, maximum:0, stepSize:1))
+                                    }
+                                    panel(layout:new FlowLayout(), constraints:BorderLayout.EAST) {
+                                        label(text:"String End")
+                                        spinner(id:"endOfString", model:spinnerNumberModel(value:0, minimum:0, maximum:0, stepSize:1))
+                                    }
                                 }
                             }
                         }
