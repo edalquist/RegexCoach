@@ -1,1 +1,3 @@
-RegexCoach.groovy~
+/target
+/.classpath
+/.project
