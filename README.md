@@ -8,4 +8,7 @@ visual feedback.
 
 To run:
 * Download [RegexCoach.groovy](RegexCoach/raw/master/RegexCoach.groovy)  
-* ```groovy RegexCoach.groovy```  
+* ```groovy RegexCoach.groovy``` 
+
+Screenshot:
++![Example 1](RegexCoach/raw/master/docs/example1.png)
