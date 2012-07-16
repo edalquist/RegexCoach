@@ -3,7 +3,7 @@ RegexCoach
 
 Java Regular Expression Helper
 
-Utility for creating and testing Java Regular Expressions in real time with
+Utility for creating, testing, and debugging Java Regular Expressions in real time with
 visual feedback.
 
 To run:
@@ -13,3 +13,7 @@ To run:
 
 Screenshot:  
 ![Example 1](RegexCoach/raw/master/docs/GroovyRegexCoach.png)
+
+
+
+Inspired by http://www.weitz.de/regex-coach/ and based on http://svn.codehaus.org/groovy/tags/GROOVY_1_7_6/src/examples/swing/RegexCoach.groovy
