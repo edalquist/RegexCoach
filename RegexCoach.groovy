@@ -234,7 +234,7 @@ class RegexHighlighter extends KeyAdapter implements ActionListener, ChangeListe
                 def target = currentState.target.substring(currentState.targetStart, currentState.targetEnd);
 
                 //There is a regex and a target
-                if (currentState.regex.length() > 0 && target.length() > 0) {
+                if (currentState.regex.length() > 0) {
                     //create the pattern & matcher
                     def pattern = Pattern.compile(currentState.regex, currentState.patternFlags);
                     def matcher = pattern.matcher(target);
@@ -244,7 +244,7 @@ class RegexHighlighter extends KeyAdapter implements ActionListener, ChangeListe
                         currentState.matchCount++;
                     }
                     matcher.reset();
-
+                    
                     //Find the correct match
                     for (def match = 0; match < currentState.matchIndex - 1; match++) {
                         matcher.find();
@@ -349,7 +349,7 @@ class RegexHighlighter extends KeyAdapter implements ActionListener, ChangeListe
                     swing.targetPane.highlighter.addHighlight(currentState.highlightStart, currentState.highlightEnd, orange)
                 }
 
-                if (currentState.matchStart != currentState.matchEnd) {
+                if (currentState.matchCount > 0) {
                     swing.targetPane.highlighter.addHighlight(currentState.matchStart, currentState.matchEnd, yellow)
                     swing.targetStatus.text = "Match #${currentState.matchIndex} from ${currentState.matchStart} to ${currentState.matchEnd}."
                 }
