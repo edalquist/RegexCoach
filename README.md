@@ -8,7 +8,7 @@ visual feedback.
 
 To run:
 * Make sure you have [Groovy](http://groovy.codehaus.org/) installed
-* Download [RegexCoach.groovy](RegexCoach/raw/master/RegexCoach.groovy)  
+* Download [RegexCoach.groovy](https://raw.github.com/edalquist/RegexCoach/master/RegexCoach.groovy)  
 * ```groovy RegexCoach.groovy``` 
 
 Screenshot:  
