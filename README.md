@@ -12,7 +12,7 @@ To run:
 * ```groovy RegexCoach.groovy``` 
 
 Screenshot:  
-![Example 1](RegexCoach/raw/master/docs/GroovyRegexCoach.png)
+![Example 1](https://raw.github.com/edalquist/RegexCoach/master/docs/GroovyRegexCoach.png)
 
 
 
